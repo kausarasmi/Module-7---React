@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Module 7 - React</title>
+</head>
+
+<body>
+    <div class=""></div>
+    <header>
+        <nav class="navv">
+            <ul>
+                <img src="./images/AccioJob.png" alt="AccioJob">
+                <li id="Home"><a href="#">Home</a></li>
+                <li id="Shop"><a href="#">Shop</a></li>
+                <li id="About"><a href="#">About</a></li>
+                <li id="Blog"><a href="#">Blog</a></li>
+                <li id="Contact"><a href="#">Contact</a></li>
+                <li id="Pages"><a href="#">Pages</a></li>
+                <img src="./images/Vector.png" alt="" id="vector">
+                <img src="./images/Register.png" alt="" id="register">
+                <img src="./images/Vector-find.png" alt="" id="find">
+                <img src="./images/Vector(1).png" alt="" id="cart">
+                <img src="./images/Vector(2).png" alt="" id="heart">
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="circle-s"></div>
+        <div class="circle"></div>
+        <div class="circle-ss"></div>
+        <h5>SUMMER 2020</h5>
+        <h6>NEW COLLECTION</h6>
+        <h4>We know how large objects will act, but things on a small scale</h4>
+        <button class="btn">SHOP NOW</button>
+        <img src="./images/technology 1.png" alt="" id="tech">
+    </div>
+    <div class="product">Products</div>
+    <div id="productList"></div>
+
+    <div class="bottom-main-div">
+        <div class="accio">
+            <div class="left">
+                <h5>Acciojob</h5>
+            </div>
+
+            <!-- <div class="icons"> -->
+            <div class="right">
+                <img src="./images/facebook.png" alt="" id="facebook">
+                <img src="./images/insta.png" alt="" id="insta">
+                <img src="./images/twitter.png" alt="" id="twitter">
+            </div>
+        </div>
+        <hr />
+
+        <div class="bottom-main">
+            <div class="bottom">
+                <div class="para">Company info</div>
+                <ul>
+                    <li>About Us</li>
+                    <li>Carrier</li>
+                    <li>We are hiring</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="para">Legal</div>
+                <ul>
+                    <li>About Us</li>
+                    <li>Carrier</li>
+                    <li>We are hiring</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="para">Features</div>
+                <ul>
+                    <li>Business Marketing</li>
+                    <li>User Analytic</li>
+                    <li>Live Chat</li>
+                    <li>Unlimited Support</li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="para">Business Marketing</div>
+                <ul>
+                    <li>IOS & Android</li>
+                    <li>Watch a demo</li>
+                    <li>Customers</li>
+                    <li>API</li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="para">Get In Touch</div>
+                <input type="text" placeholder="Your email" />
+                <button>Subscribe</button>
+                <div>impsum dolor amit</div>
+            </div>
+        </div>
+        <hr />
+        <div class="love">Made With ❤️ at Acciojob</div>
+    </div>
+
+</body>
+<script>
+    let finalData = []
+    let apiUrl = 'https://acciojob-module-7-sept-2022-default-rtdb.asia-southeast1.firebasedatabase.app/products.json';
+    fetch(apiUrl).then(response => {
+        return response.json();
+    }).then(data => {
+        finalData = data
+        // Work with JSON data here
+        console.log(Object.values(data));
+        let values = Object.values(data)
+        let productList = document.getElementById('productList');
+        for (let i = 0; i < values.length; i++) {
+            console.log("fff", values[i])
+            let doc = values[i]
+            let iphone13 = document.createElement('div');
+            iphone13.className = 'iphone13'
+
+            let productImage = document.createElement('img');
+            productImage.src = doc.productImage
+
+            let p = document.createElement('p');
+            p.innerHTML = doc.productName
+
+            let stars = document.createElement('div');
+            stars.className = 'stars'
+
+            let starImage1 = document.createElement('img');
+            starImage1.src = "./images/Star 1.png"
+            starImage1.id = "star1"
+            let starImage2 = document.createElement('img');
+            starImage2.id = "star1"
+            starImage2.src = "./images/Star 1.png"
+            let starImage3 = document.createElement('img');
+            starImage3.id = "star1"
+            starImage3.src = "./images/Star 1.png"
+            let starImage4 = document.createElement('img');
+            starImage4.id = "star1"
+            starImage4.src = "./images/Star 1.png"
+            let starImage5 = document.createElement('img');
+            starImage5.id = "star1"
+            starImage5.src = "./images/Star 1.png"
+
+            stars.appendChild(starImage1)
+            stars.appendChild(starImage2)
+            stars.appendChild(starImage3)
+            stars.appendChild(starImage4)
+            stars.appendChild(starImage5)
+
+            let para1 = document.createElement('p');
+            let para2 = document.createElement('p');
+            para1.id = 'para1'
+            para2.id = 'para2'
+
+            para1.innerHTML = doc.oldPrice
+            para2.innerHTML = doc.newPrice
+
+            let button = document.createElement('button');
+            button.className = 'btn2'
+            button.innerHTML = 'Add to Cart'
+
+            iphone13.appendChild(productImage)
+            iphone13.appendChild(stars)
+            iphone13.appendChild(para1)
+            iphone13.appendChild(para2)
+            iphone13.appendChild(button)
+
+            productList.appendChild(iphone13)
+
+        };
+
+
+    }).catch(err => {
+
+        console.log(err);
+
+
+    });
+
+</script>
+
+</html>
